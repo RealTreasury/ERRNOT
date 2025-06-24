@@ -583,15 +583,17 @@
             });
         });
     </script>
-    <script>
+ <script>
   function sendHeight() {
     const height = document.documentElement.scrollHeight;
-    window.parent.postMessage({ type: "setHeight", height: height }, "*");
+    const id = window.frameElement?.id || 'iframe-default';
+    window.parent.postMessage({ type: "setHeight", height: height, id: id }, "*");
   }
 
   window.addEventListener("load", sendHeight);
   window.addEventListener("resize", sendHeight);
 </script>
+
 
 </body>
 </html>
